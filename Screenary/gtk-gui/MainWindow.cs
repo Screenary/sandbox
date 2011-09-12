@@ -9,10 +9,12 @@ public partial class MainWindow
 	private global::Gtk.Action HelpAction;
 	private global::Gtk.Action QuitAction;
 	private global::Gtk.Action AboutAction;
-	private global::Gtk.Fixed fixedMain;
-	private global::Gtk.MenuBar menubarMain;
-	private global::Gtk.DrawingArea drawingArea;
-	private global::Gtk.Button btnTest;
+	private global::Gtk.Action fileAction;
+	private global::Gtk.Action quitAction;
+	private global::Gtk.Action helpAction;
+	private global::Gtk.Action aboutAction;
+	private global::Gtk.VBox vbox1;
+	private global::Gtk.MenuBar mainMenuBar;
     
 	protected virtual void Build ()
 	{
@@ -35,40 +37,37 @@ public partial class MainWindow
 		this.AboutAction = new global::Gtk.Action ("AboutAction", global::Mono.Unix.Catalog.GetString ("About"), null, null);
 		this.AboutAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("About");
 		w1.Add (this.AboutAction, null);
+		this.fileAction = new global::Gtk.Action ("fileAction", global::Mono.Unix.Catalog.GetString ("File"), null, null);
+		this.fileAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("File");
+		w1.Add (this.fileAction, null);
+		this.quitAction = new global::Gtk.Action ("quitAction", global::Mono.Unix.Catalog.GetString ("Quit"), null, null);
+		this.quitAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Quit");
+		w1.Add (this.quitAction, null);
+		this.helpAction = new global::Gtk.Action ("helpAction", global::Mono.Unix.Catalog.GetString ("Help"), null, null);
+		this.helpAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Help");
+		w1.Add (this.helpAction, null);
+		this.aboutAction = new global::Gtk.Action ("aboutAction", global::Mono.Unix.Catalog.GetString ("About"), null, null);
+		this.aboutAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("About");
+		w1.Add (this.aboutAction, null);
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString ("Screenary");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
-		this.fixedMain = new global::Gtk.Fixed ();
-		this.fixedMain.Name = "fixedMain";
-		this.fixedMain.HasWindow = false;
-		// Container child fixedMain.Gtk.Fixed+FixedChild
-		this.UIManager.AddUiFromString ("<ui><menubar name='menubarMain'><menu name='FileAction1' action='FileAction1'><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
-		this.menubarMain = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubarMain")));
-		this.menubarMain.Name = "menubarMain";
-		this.fixedMain.Add (this.menubarMain);
-		// Container child fixedMain.Gtk.Fixed+FixedChild
-		this.drawingArea = new global::Gtk.DrawingArea ();
-		this.drawingArea.WidthRequest = 640;
-		this.drawingArea.HeightRequest = 480;
-		this.drawingArea.Name = "drawingArea";
-		this.fixedMain.Add (this.drawingArea);
-		global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.fixedMain [this.drawingArea]));
-		w3.X = 79;
-		w3.Y = 112;
-		// Container child fixedMain.Gtk.Fixed+FixedChild
-		this.btnTest = new global::Gtk.Button ();
-		this.btnTest.CanFocus = true;
-		this.btnTest.Name = "btnTest";
-		this.btnTest.UseUnderline = true;
-		this.btnTest.Label = global::Mono.Unix.Catalog.GetString ("Test");
-		this.fixedMain.Add (this.btnTest);
-		global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixedMain [this.btnTest]));
-		w4.X = 836;
-		w4.Y = 556;
-		this.Add (this.fixedMain);
+		this.vbox1 = new global::Gtk.VBox ();
+		this.vbox1.Name = "vbox1";
+		this.vbox1.Spacing = 6;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.UIManager.AddUiFromString ("<ui><menubar name='mainMenuBar'><menu name='fileAction' action='fileAction'><menuitem name='quitAction' action='quitAction'/></menu><menu name='helpAction' action='helpAction'><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
+		this.mainMenuBar = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/mainMenuBar")));
+		this.mainMenuBar.Name = "mainMenuBar";
+		this.vbox1.Add (this.mainMenuBar);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.mainMenuBar]));
+		w2.Position = 0;
+		w2.Expand = false;
+		w2.Fill = false;
+		this.Add (this.vbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
@@ -78,6 +77,7 @@ public partial class MainWindow
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.QuitAction.Activated += new global::System.EventHandler (this.OnQuitActionActivated);
 		this.AboutAction.Activated += new global::System.EventHandler (this.OnAboutActionActivated);
-		this.btnTest.Clicked += new global::System.EventHandler (this.OnBtnTestClicked);
+		this.quitAction.Activated += new global::System.EventHandler (this.OnQuitActionActivated);
+		this.aboutAction.Activated += new global::System.EventHandler (this.OnAboutActionActivated);
 	}
 }

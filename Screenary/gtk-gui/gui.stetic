@@ -37,52 +37,58 @@
         <property name="ShortLabel" translatable="yes">About</property>
         <signal name="Activated" handler="OnAboutActionActivated" />
       </action>
+      <action id="fileAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">File</property>
+        <property name="ShortLabel" translatable="yes">File</property>
+      </action>
+      <action id="quitAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Quit</property>
+        <property name="ShortLabel" translatable="yes">Quit</property>
+        <signal name="Activated" handler="OnQuitActionActivated" />
+      </action>
+      <action id="helpAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Help</property>
+        <property name="ShortLabel" translatable="yes">Help</property>
+      </action>
+      <action id="aboutAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">About</property>
+        <property name="ShortLabel" translatable="yes">About</property>
+        <signal name="Activated" handler="OnAboutActionActivated" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">Screenary</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
-      <widget class="Gtk.Fixed" id="fixedMain">
+      <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
-        <property name="HasWindow">False</property>
+        <property name="Spacing">6</property>
         <child>
-          <widget class="Gtk.MenuBar" id="menubarMain">
+          <widget class="Gtk.MenuBar" id="mainMenuBar">
             <property name="MemberName" />
-            <node name="menubarMain" type="Menubar">
-              <node type="Menu" action="FileAction1">
-                <node type="Menuitem" action="QuitAction" />
+            <node name="mainMenuBar" type="Menubar">
+              <node type="Menu" action="fileAction">
+                <node type="Menuitem" action="quitAction" />
               </node>
-              <node type="Menu" action="HelpAction">
-                <node type="Menuitem" action="AboutAction" />
+              <node type="Menu" action="helpAction">
+                <node type="Menuitem" action="aboutAction" />
               </node>
             </node>
           </widget>
-        </child>
-        <child>
-          <widget class="Gtk.DrawingArea" id="drawingArea">
-            <property name="MemberName" />
-            <property name="WidthRequest">640</property>
-            <property name="HeightRequest">480</property>
-          </widget>
           <packing>
-            <property name="X">79</property>
-            <property name="Y">112</property>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Button" id="btnTest">
-            <property name="MemberName" />
-            <property name="CanFocus">True</property>
-            <property name="Type">TextOnly</property>
-            <property name="Label" translatable="yes">Test</property>
-            <property name="UseUnderline">True</property>
-            <signal name="Clicked" handler="OnBtnTestClicked" />
-          </widget>
-          <packing>
-            <property name="X">836</property>
-            <property name="Y">556</property>
-          </packing>
+          <placeholder />
         </child>
       </widget>
     </child>
